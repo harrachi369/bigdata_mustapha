@@ -1,0 +1,13 @@
+
+=== VALIDATION DES COMMANDES ===
+Silver : 2829
+Fact : 2829
+
+=== VALIDATION DES QUANTITES ===
+Silver : 8615
+Fact : 8615
+
+=== INTEGRITE REFERENTIELLE ===
+Commandes sans dimension correspondante : 0
+
+✅ TOUTES LES VALIDATIONS DU STAR SCHEMA SONT REUSSIES

@@ -1,0 +1,29 @@
+
+=== SNAPSHOTS AVANT OPTIMIZE ===
+[1663606617928650891, datetime.datetime(2026, 11, 9, 11, 45, 18, 560000, tzinfo=zoneinfo.ZoneInfo(key='UTC')), 'append']
+[9211456032853889904, datetime.datetime(2026, 11, 9, 11, 52, 7, 755000, tzinfo=zoneinfo.ZoneInfo(key='UTC')), 'delete']
+[1686144708645032596, datetime.datetime(2026, 11, 9, 11, 52, 10, 171000, tzinfo=zoneinfo.ZoneInfo(key='UTC')), 'append']
+
+=== FICHIERS AVANT OPTIMIZE ===
+['s3://user-m-harrachi-ece/warehouse/gold/top_products-68ea90cf103f4746ab22a3ee312d0973/data/20261109_115208_00038_cgruj-b4635695-4834-43f1-87f8-15f51510cf3f.parquet', 6, 760]
+
+Nombre de fichiers avant : 1
+
+=== EXECUTION OPTIMIZE ===
+OPTIMIZE : terminé
+
+=== SNAPSHOTS APRES OPTIMIZE ===
+[1663606617928650891, datetime.datetime(2026, 11, 9, 11, 45, 18, 560000, tzinfo=zoneinfo.ZoneInfo(key='UTC')), 'append']
+[9211456032853889904, datetime.datetime(2026, 11, 9, 11, 52, 7, 755000, tzinfo=zoneinfo.ZoneInfo(key='UTC')), 'delete']
+[1686144708645032596, datetime.datetime(2026, 11, 9, 11, 52, 10, 171000, tzinfo=zoneinfo.ZoneInfo(key='UTC')), 'append']
+
+=== FICHIERS APRES OPTIMIZE ===
+['s3://user-m-harrachi-ece/warehouse/gold/top_products-68ea90cf103f4746ab22a3ee312d0973/data/20261109_115208_00038_cgruj-b4635695-4834-43f1-87f8-15f51510cf3f.parquet', 6, 760]
+
+Nombre de fichiers après : 1
+
+=== VALIDATION ===
+Produits : 6
+Unités : 8615
+
+✅ OPTIMIZE EXECUTE ET DONNEES CONSERVEES

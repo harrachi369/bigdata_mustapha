@@ -1,0 +1,29 @@
+
+=== TABLE PARTITIONNEE CREEE ===
+orders_by_state_month : 50
+orders_by_state_month_part : 50
+
+=== FICHIERS : orders_by_state_month ===
+Nombre de fichiers : 1
+['s3://user-m-harrachi-ece/warehouse/gold/orders_by_state_month-b1b760ec9b944a549db83afbb2149cdb/data/20261109_114504_00017_cgruj-967531d6-cbdc-4ff5-a64a-7d7531b45859.parquet', 50, 1379]
+
+=== FICHIERS : orders_by_state_month_part ===
+Nombre de fichiers : 4
+['s3://user-m-harrachi-ece/warehouse/gold/orders_by_state_month_part-8e96c6c379a74047b8ca6dbe63e53935/data/month_month=2020-04/20261109_122929_00058_cgruj-238bd2ba-616c-4a47-8166-65c34680974a.parquet', 10, 966]
+['s3://user-m-harrachi-ece/warehouse/gold/orders_by_state_month_part-8e96c6c379a74047b8ca6dbe63e53935/data/month_month=2020-01/20261109_122929_00058_cgruj-f773f047-ca77-4261-8ec9-74a6f08e87d7.parquet', 17, 1040]
+['s3://user-m-harrachi-ece/warehouse/gold/orders_by_state_month_part-8e96c6c379a74047b8ca6dbe63e53935/data/month_month=2020-03/20261109_122929_00058_cgruj-5702529b-9d91-4c4c-a12b-3dff600c3127.parquet', 13, 999]
+['s3://user-m-harrachi-ece/warehouse/gold/orders_by_state_month_part-8e96c6c379a74047b8ca6dbe63e53935/data/month_month=2020-02/20261109_122929_00058_cgruj-1790eb09-7e10-47c9-9bd0-8b9895188061.parquet', 10, 963]
+
+=== EXPLAIN ANALYZE : orders_by_state_month ===
+Queued: 529.44us, Analysis: 249.65ms, Planning: 112.21ms, Execution: 520.98ms, Finishing: 0.00ns
+CPU: 3.33ms, Scheduled: 3.41ms, Blocked 590.97ms (Input: 393.50ms, Output: 0.00ns), Input: 1 row (9B); per task: avg.: 1.00 std.dev.: 0.00, Output: 1 row (9B)
+CPU: 6.46ms, Scheduled: 6.47ms, Blocked 0.00ns (Input: 0.00ns, Output: 0.00ns), Input: 50 rows (1.01kB); per task: avg.: 50.00 std.dev.: 0.00, Output: 1 row (9B)
+└─ ScanFilterProject[table = lakehouse:gold.orders_by_state_month$data@5676796705500676559, filterPredicate = (month = timestamp(6) with time zone '2020-02-01 00:00:00.000000 UTC')]
+Input: 50 rows (1.01kB), Filtered: 80.00%, Physical input: 1.35kB, Physical input time: 14.76us, Splits: 1, Splits generation wait time: 97.23ms
+
+=== EXPLAIN ANALYZE : orders_by_state_month_part ===
+Queued: 499.71us, Analysis: 206.44ms, Planning: 88.16ms, Execution: 392.74ms, Finishing: 0.00ns
+CPU: 1.50ms, Scheduled: 1.55ms, Blocked 332.28ms (Input: 221.71ms, Output: 0.00ns), Input: 1 row (9B); per task: avg.: 1.00 std.dev.: 0.00, Output: 1 row (9B)
+CPU: 8.10ms, Scheduled: 74.12ms, Blocked 0.00ns (Input: 0.00ns, Output: 0.00ns), Input: 10 rows (220B); per task: avg.: 10.00 std.dev.: 0.00, Output: 1 row (9B)
+└─ ScanFilterProject[table = lakehouse:gold.orders_by_state_month_part$data@1511351554408501575, filterPredicate = (month = timestamp(6) with time zone '2020-02-01 00:00:00.000000 UTC')]
+Input: 10 rows (220B), Filtered: 0.00%, Physical input: 963B, Physical input time: 27.29us, Splits: 1, Splits generation wait time: 100.45ms

@@ -1,0 +1,12 @@
+
+=== SNAPSHOTS ORDERS ===
+      snapshot_id                  committed_at operation
+90998007027486688 2026-11-09 10:47:10.426+00:00 overwrite
+
+=== FICHIERS PARQUET ORDERS ===
+                                                                                                          file_path file_format  record_count  file_size_in_bytes
+s3a://user-m-harrachi-ece/warehouse/silver/orders/data/00000-6-21b1855f-d49d-4afb-8edb-839d052c3a98-0-00001.parquet     PARQUET          2829               84055
+
+=== HISTORIQUE ORDERS ===
+              made_current_at       snapshot_id parent_id  is_current_ancestor
+2026-11-09 10:47:10.426+00:00 90998007027486688      None                 True

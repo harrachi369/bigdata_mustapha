@@ -1,0 +1,12 @@
+
+=== COMPARAISON SPARK / TRINO ===
+Lignes Spark : 50
+Lignes Trino : 50
+
+=== TOTAUX SPARK ===
+Row(orders=2830, units=8617)
+
+=== TOTAUX TRINO ===
+Row(orders=2830, units=8617)
+
+✅ RESULTATS SPARK ET TRINO COHERENTS

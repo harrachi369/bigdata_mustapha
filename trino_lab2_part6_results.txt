@@ -1,0 +1,18 @@
+
+=== SNAPSHOTS AVANT ACTUALISATION ===
+[1663606617928650891, datetime.datetime(2026, 11, 9, 11, 45, 18, 560000, tzinfo=zoneinfo.ZoneInfo(key='UTC')), 'append']
+État initial : [6, 8615]
+
+DELETE : terminé
+INSERT : terminé
+
+=== SNAPSHOTS APRES ACTUALISATION ===
+[1663606617928650891, datetime.datetime(2026, 11, 9, 11, 45, 18, 560000, tzinfo=zoneinfo.ZoneInfo(key='UTC')), 'append']
+[9211456032853889904, datetime.datetime(2026, 11, 9, 11, 52, 7, 755000, tzinfo=zoneinfo.ZoneInfo(key='UTC')), 'delete']
+[1686144708645032596, datetime.datetime(2026, 11, 9, 11, 52, 10, 171000, tzinfo=zoneinfo.ZoneInfo(key='UTC')), 'append']
+
+=== COMPARAISON DES VERSIONS ===
+Version actuelle : [6, 8615]
+Version initiale : [6, 8615]
+
+✅ ACTUALISATION ET TIME TRAVEL REUSSIS

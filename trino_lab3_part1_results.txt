@@ -1,0 +1,10 @@
+dim_user : créée
+dim_product : créée
+Première date : 2020-01-01
+Dernière date : 2020-04-27
+dim_date : créée
+
+=== DIMENSIONS CREEES ===
+['dim_user', 50]
+['dim_date', 118]
+['dim_product', 6]

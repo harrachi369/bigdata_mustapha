@@ -1,0 +1,26 @@
+
+=== VENTES PAR PRODUIT, ETAT ET ANNEE ===
+ year state   product  orders  units
+ 2020    FM   brioche      43    134
+ 2020    VI     bread      37    110
+ 2020    HI     bread      35    110
+ 2020    VI croissant      34    107
+ 2020    HI croissant      36    107
+ 2020    VI   brioche      33    104
+ 2020    FM croissant      32    102
+ 2020    AE     bread      31    100
+ 2020    FM     donut      33     98
+ 2020    VT     drink      33     96
+
+=== COMMANDES PAR ETAT ET PAR MOIS ===
+state      month  orders  units  buyers
+   AL 2020-01-01      65    199       1
+   AP 2020-01-01      17     49       1
+   AS 2020-01-01      12     40       1
+   CO 2020-01-01      17     43       1
+   FM 2020-01-01      66    200       1
+   GA 2020-01-01       4     12       1
+   IN 2020-01-01      49    175       1
+   KY 2020-01-01      83    256       1
+   MH 2020-01-01      21     57       1
+   NE 2020-01-01      11     30       1

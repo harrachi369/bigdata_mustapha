@@ -1,0 +1,21 @@
+[project]
+name = "bigdata-mustapha"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "m-harrachi-ece", email = "mustapha.harrachi@edu.ece.fr" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "faker>=40.44.0",
+    "pandas>=3.1.1",
+    "trino>=0.340.0",
+]
+
+[project.scripts]
+bigdata-mustapha = "bigdata_mustapha:main"
+
+[build-system]
+requires = ["uv_build>=0.12.10,<0.13.0"]
+build-backend = "uv_build"

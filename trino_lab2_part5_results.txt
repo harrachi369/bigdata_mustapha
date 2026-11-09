@@ -1,0 +1,16 @@
+
+=== VALIDATION DES QUANTITES ===
+Silver : 8615
+Gold par mois : 8615
+Gold produits : 8615
+
+=== VALIDATION DES COMMANDES ===
+Silver : 2829
+Gold par mois : 2829
+Gold utilisateurs : 2829
+
+=== VALIDATION DES UTILISATEURS ===
+Silver : 50
+Gold : 50
+
+✅ TOUTES LES VALIDATIONS SONT REUSSIES

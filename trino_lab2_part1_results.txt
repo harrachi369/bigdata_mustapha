@@ -1,0 +1,68 @@
+
+=== VERSION TRINO ===
+_col0
+  480
+
+=== CATALOGUES ===
+  Catalog
+lakehouse
+   system
+    tpcds
+     tpch
+
+=== SCHEMAS ===
+            Schema
+information_schema
+            silver
+            system
+
+=== TABLES SILVER ===
+ Table
+orders
+ users
+
+=== STRUCTURE ORDERS ===
+    Column                        Type Extra Comment
+  order_id                     varchar              
+   user_id                     varchar              
+ordered_at timestamp(6) with time zone              
+  quantity                     integer              
+   product                     varchar              
+
+=== STRUCTURE USERS ===
+   Column    Type Extra Comment
+  user_id varchar              
+ username varchar              
+     name varchar              
+      sex varchar              
+    email varchar              
+birthdate    date              
+   street varchar              
+     city varchar              
+    state varchar              
+ zip_code varchar              
+
+=== NOMBRE DE COMMANDES ===
+ orders
+   2829
+
+=== NOMBRE D'UTILISATEURS ===
+ users
+    50
+
+=== UTILISATEURS PAR ETAT ===
+state  users  missing_city
+   AE      3             3
+   FM      3             0
+   TX      2             0
+   DE      2             0
+   PA      2             0
+   VT      2             0
+   NJ      2             0
+   HI      2             0
+   VI      2             0
+   AP      2             2
+
+=== COMMANDES ORPHELINES ===
+ orphan_orders
+             0

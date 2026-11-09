@@ -1,0 +1,135 @@
+
+=== EXPLAIN DISTRIBUTED ===
+Trino version: 480
+Fragment 0 [HASH]
+    Output layout: [state, count]
+    Output partitioning: SINGLE []
+    Output[columnNames = [state, orders]]
+    │   Layout: [state:varchar, count:bigint]
+    │   Estimates: {rows: ? (?), cpu: 0, memory: 0B, network: 0B}
+    │   orders := count
+    └─ Aggregate[type = FINAL, keys = [state]]
+       │   Layout: [state:varchar, count:bigint]
+       │   Estimates: {rows: ? (?), cpu: ?, memory: ?, network: 0B}
+       │   count := count(count_4)
+       └─ LocalExchange[partitioning = HASH, arguments = [state::varchar]]
+          │   Layout: [state:varchar, count_4:bigint]
+          │   Estimates: {rows: ? (?), cpu: ?, memory: 0B, network: 0B}
+          └─ RemoteSource[sourceFragmentIds = [1]]
+                 Layout: [state:varchar, count_4:bigint]
+
+Fragment 1 [SOURCE]
+    Output layout: [state, count_4]
+    Output partitioning: HASH [state]
+    Aggregate[type = PARTIAL, keys = [state]]
+    │   Layout: [state:varchar, count_4:bigint]
+    │   count_4 := count(*)
+    └─ InnerJoin[criteria = (user_id = user_id_0), distribution = REPLICATED]
+       │   Layout: [state:varchar]
+       │   Estimates: {rows: ? (?), cpu: ?, memory: 4.02kB, network: 0B}
+       │   Distribution: REPLICATED
+       │   dynamicFilterAssignments = {user_id_0 -> #df_314}
+       ├─ ScanFilter[table = lakehouse:silver.orders$data@90998007027486688, dynamicFilters = {user_id = #df_314}]
+       │      Layout: [user_id:varchar]
+       │      Estimates: {rows: 2829 (22.36kB), cpu: 22.36k, memory: 0B, network: 0B}/{rows: 2829 (22.36kB), cpu: 22.36k, memory: 0B, network: 0B}
+       │      user_id := 2:user_id:varchar
+       └─ LocalExchange[partitioning = SINGLE]
+          │   Layout: [user_id_0:varchar, state:varchar]
+          │   Estimates: {rows: 50 (4.02kB), cpu: 0, memory: 0B, network: 0B}
+          └─ RemoteSource[sourceFragmentIds = [2]]
+                 Layout: [user_id_0:varchar, state:varchar]
+
+Fragment 2 [SOURCE]
+    Output layout: [user_id_0, state]
+    Output partitioning: BROADCAST []
+    TableScan[table = lakehouse:silver.users$data@8444407986324434464]
+        Layout: [user_id_0:varchar, state:varchar]
+        Estimates: {rows: 50 (4.02kB), cpu: 4.02k, memory: 0B, network: 0B}
+        state := 9:state:varchar
+        user_id_0 := 1:user_id:varchar
+
+
+
+=== EXPLAIN ANALYZE ===
+Trino version: 480
+Queued: 303.55us, Analysis: 708.50ms, Planning: 224.64ms, Execution: 2.69s, Finishing: 0.00ns
+Fragment 1 [HASH]
+    CPU: 9.36ms, Scheduled: 9.48ms, Blocked 7.56s (Input: 3.78s, Output: 0.00ns), Input: 37 rows (592B); per task: avg.: 37.00 std.dev.: 0.00, Output: 37 rows (592B)
+    Peak Memory: 840B, Tasks count: 1; per task: max: 840B
+    Output layout: [state, count]
+    Output partitioning: SINGLE []
+    Aggregate[type = FINAL, keys = [state]]
+    │   Layout: [state:varchar, count:bigint]
+    │   Estimates: {rows: ? (?), cpu: ?, memory: ?, network: 0B}
+    │   CPU: 6.00ms (3.30%), Scheduled: 6.00ms (1.14%), Blocked: 0.00ns (0.00%), Output: 37 rows (592B)
+    │   Input avg.: 18.50 rows, Input std.dev.: 2.70%
+    │   count := count(count_4)
+    └─ LocalExchange[partitioning = HASH, arguments = [state::varchar]]
+       │   Layout: [state:varchar, count_4:bigint]
+       │   Estimates: {rows: ? (?), cpu: ?, memory: 0B, network: 0B}
+       │   CPU: 0.00ns (0.00%), Scheduled: 0.00ns (0.00%), Blocked: 3.78s (38.47%), Output: 37 rows (592B)
+       │   Input avg.: 18.50 rows, Input std.dev.: 100.00%
+       └─ RemoteSource[sourceFragmentIds = [2]]
+              Layout: [state:varchar, count_4:bigint]
+              CPU: 0.00ns (0.00%), Scheduled: 0.00ns (0.00%), Blocked: 3.78s (38.47%), Output: 37 rows (592B)
+              Input avg.: 18.50 rows, Input std.dev.: 100.00%
+
+Fragment 2 [SOURCE]
+    CPU: 167.42ms, Scheduled: 513.33ms, Blocked 2.26s (Input: 770.61ms, Output: 0.00ns), Input: 2879 rows (126.66kB); per task: avg.: 2879.00 std.dev.: 0.00, Output: 37 rows (592B)
+    Peak Memory: 217.99kB, Tasks count: 1; per task: max: 217.99kB
+    Output layout: [state, count_4]
+    Output partitioning: HASH [state]
+    Aggregate[type = PARTIAL, keys = [state]]
+    │   Layout: [state:varchar, count_4:bigint]
+    │   CPU: 34.00ms (18.68%), Scheduled: 53.00ms (10.08%), Blocked: 0.00ns (0.00%), Output: 37 rows (592B)
+    │   Input avg.: 2829.00 rows, Input std.dev.: 0.00%
+    │   count_4 := count(*)
+    └─ InnerJoin[criteria = (user_id = user_id_0), distribution = REPLICATED]
+       │   Layout: [state:varchar]
+       │   Estimates: {rows: ? (?), cpu: ?, memory: 4.02kB, network: 0B}
+       │   CPU: 64.00ms (35.16%), Scheduled: 323.00ms (61.41%), Blocked: 1.21s (12.32%), Output: 2829 rows (19.34kB)
+       │   Left (probe) Input avg.: 2829.00 rows, Input std.dev.: 0.00%
+       │   Right (build) Input avg.: 50.00 rows, Input std.dev.: 0.00%
+       │   Distribution: REPLICATED
+       │   dynamicFilterAssignments = {user_id_0 -> #df_373}
+       ├─ ScanFilter[table = lakehouse:silver.orders$data@90998007027486688, dynamicFilters = {user_id = #df_373}]
+       │      Layout: [user_id:varchar]
+       │      Estimates: {rows: 2829 (22.36kB), cpu: 22.36k, memory: 0B, network: 0B}/{rows: 2829 (22.36kB), cpu: 22.36k, memory: 0B, network: 0B}
+       │      CPU: 65.00ms (35.71%), Scheduled: 131.00ms (24.90%), Blocked: 0.00ns (0.00%), Output: 2829 rows (123.33kB)
+       │      Input avg.: 2829.00 rows, Input std.dev.: 0.00%
+       │      user_id := 2:user_id:varchar
+       │      Input: 2829 rows (124.32kB), Filtered: 0.00%, Physical input: 82.08kB, Physical input time: 39.74us, Splits: 1, Splits generation wait time: 817.62ms
+       │      Dynamic filters: 
+       │          - df_373, [ SortedRangeSet[type=varchar, ranges=50, {[09a0a0f6-73b0-4091-b634-c1694f76e388], ..., [f94d6204-6808-493f-9fed-2c43e256a6dc]}] ], collection time=884.99ms
+       └─ LocalExchange[partitioning = SINGLE]
+          │   Layout: [user_id_0:varchar, state:varchar]
+          │   Estimates: {rows: 50 (4.02kB), cpu: 0, memory: 0B, network: 0B}
+          │   CPU: 0.00ns (0.00%), Scheduled: 0.00ns (0.00%), Blocked: 284.00ms (2.89%), Output: 50 rows (2.34kB)
+          │   Input avg.: 25.00 rows, Input std.dev.: 68.00%
+          └─ RemoteSource[sourceFragmentIds = [3]]
+                 Layout: [user_id_0:varchar, state:varchar]
+                 CPU: 2.00ms (1.10%), Scheduled: 2.00ms (0.38%), Blocked: 771.00ms (7.85%), Output: 50 rows (2.34kB)
+                 Input avg.: 25.00 rows, Input std.dev.: 68.00%
+
+Fragment 3 [SOURCE]
+    CPU: 11.05ms, Scheduled: 11.06ms, Blocked 0.00ns (Input: 0.00ns, Output: 0.00ns), Input: 50 rows (2.54kB); per task: avg.: 50.00 std.dev.: 0.00, Output: 50 rows (2.54kB)
+    Peak Memory: 3.62kB, Tasks count: 1; per task: max: 3.62kB
+    Output layout: [user_id_0, state]
+    Output partitioning: BROADCAST []
+    TableScan[table = lakehouse:silver.users$data@8444407986324434464]
+        Layout: [user_id_0:varchar, state:varchar]
+        Estimates: {rows: 50 (4.02kB), cpu: 4.02k, memory: 0B, network: 0B}
+        CPU: 11.00ms (6.04%), Scheduled: 11.00ms (2.09%), Blocked: 0.00ns (0.00%), Output: 50 rows (2.54kB)
+        Input avg.: 50.00 rows, Input std.dev.: 0.00%
+        state := 9:state:varchar
+        user_id_0 := 1:user_id:varchar
+        Input: 50 rows (2.54kB), Physical input: 7.26kB, Physical input time: 17.28us, Splits: 1, Splits generation wait time: 279.40ms
+
+
+
+=== DERNIERES REQUETES ===
+['20261109_114350_00015_cgruj', 'RUNNING', -10, '\nSELECT\n    query_id,\n    state,\n    date_diff(\n        \'millisecond\',\n        created,\n        coalesce("end", current_timestamp)\n    ) AS elapsed_ms,\n    query\nFROM system.runtime.queries\nORDER BY created DESC\nLIMIT 5\n']
+['20261109_114347_00014_cgruj', 'FINISHED', 3512, 'EXPLAIN ANALYZE \nSELECT u.state, count(*) AS orders\nFROM lakehouse.silver.orders AS o\nJOIN lakehouse.silver.users AS u\n    ON u.user_id = o.user_id\nGROUP BY u.state\n']
+['20261109_114345_00013_cgruj', 'FINISHED', 1843, 'EXPLAIN (TYPE DISTRIBUTED) \nSELECT u.state, count(*) AS orders\nFROM lakehouse.silver.orders AS o\nJOIN lakehouse.silver.users AS u\n    ON u.user_id = o.user_id\nGROUP BY u.state\n']
+['20261109_114143_00012_cgruj', 'FINISHED', 594, '\n    SELECT *\n    FROM lakehouse.silver."orders$history"\n    ']
+['20261109_114142_00011_cgruj', 'FINISHED', 1055, '\n    SELECT file_path, file_format,\n           record_count, file_size_in_bytes\n    FROM lakehouse.silver."orders$files"\n    ']

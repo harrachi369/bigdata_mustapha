@@ -1,0 +1,22 @@
+
+=== SNAPSHOTS AVANT MERGE ===
+[5676796705500676559, datetime.datetime(2026, 11, 9, 11, 45, 12, 300000, tzinfo=zoneinfo.ZoneInfo(key='UTC')), 'append']
+
+=== TOTAUX AVANT MERGE ===
+Silver : [2830, 8617]
+Gold : [2829, 8615]
+
+MERGE : terminé
+
+=== TOTAUX APRES MERGE ===
+Gold actuel : [2830, 8617]
+
+=== SNAPSHOTS APRES MERGE ===
+[5676796705500676559, datetime.datetime(2026, 11, 9, 11, 45, 12, 300000, tzinfo=zoneinfo.ZoneInfo(key='UTC')), 'append']
+[4603847551082997283, datetime.datetime(2026, 11, 9, 12, 36, 9, 684000, tzinfo=zoneinfo.ZoneInfo(key='UTC')), 'overwrite']
+
+=== TIME TRAVEL ===
+Version initiale : [2829, 8615]
+Version actuelle : [2830, 8617]
+
+✅ MERGE ET TIME TRAVEL REUSSIS

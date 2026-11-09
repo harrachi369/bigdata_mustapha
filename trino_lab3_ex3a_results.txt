@@ -1,0 +1,13 @@
+
+=== AVANT INSERTION ===
+Silver : [2829, 8615]
+
+Nouvelle commande insérée.
+
+=== COMMANDE AJOUTEE ===
+['lab3-ex3-mustapha-001', 'f53d4330-cdda-44ba-ad06-e8cf3805f907', datetime.datetime(2020, 1, 28, 12, 31, 23, 938466, tzinfo=zoneinfo.ZoneInfo(key='UTC')), 2, 'cookie']
+
+=== APRES INSERTION ===
+Silver : [2830, 8617]
+
+✅ INSERTION SILVER REUSSIE

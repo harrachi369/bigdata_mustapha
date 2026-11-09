@@ -1,0 +1,20 @@
+
+=== ANALYSE DES COHORTES ===
+ birth_decade  users  orders  avg_units_per_order
+         1910      1      47                 3.19
+         1930      5     198                 3.14
+         1940      4     273                 3.06
+         1950      6     340                 3.01
+         1960      8     433                 3.02
+         1970      5     369                 2.99
+         1980      2      81                 2.79
+         1990      5     402                 3.07
+         2000      4     154                 2.99
+         2010      5     244                 3.08
+         2020      5     288                 3.12
+
+=== VALIDATION DES COHORTES ===
+ total_users  total_orders
+          50          2829
+
+✅ VALIDATION DES COHORTES REUSSIE
